@@ -102,7 +102,7 @@ class G_unet_16_2D_bn(BaseNet):
         conv6_2 = conv2D_layer_bn(conv6_1, name='conv6_2', filters=f*2, kernel_size=3, strides=1, padding='same',
                                   activation='relu', kernel_initializer="he_normal")
         # (batch size, 80, 104, filters*2)
-        upconv1 = deconv2D_layer_bn(conv6_2, name="upconv1", filters=f, kernel_size=3, strides=2, padding='same',
+        upconv1 = conv2D_layer_bn(conv6_2, name="upconv1", filters=f, kernel_size=3, strides=2, padding='same',
                            activation='relu', kernel_initializer="he_normal")
         # (batch size, 160, 208, filters)
         concat1 = Concatenate()([upconv1, conv1_2])

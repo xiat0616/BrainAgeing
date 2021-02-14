@@ -123,7 +123,7 @@ class G_unet_16_2D_bn_with_AD(BaseNet):
 
         conv8_1 = conv2D_layer_bn(concat1, name="conv8_1", filters=f, kernel_size=3, strides=1, padding='same',
                                   activation='relu', kernel_initializer="he_normal")
-        conv8_2 = deconv2D_layer_bn(conv8_1, name="conv8_2", filters=1, kernel_size=3, strides=1, padding='same',
+        conv8_2 = conv2D_layer_bn(conv8_1, name="conv8_2", filters=1, kernel_size=3, strides=1, padding='same',
                            activation=self.conf.G_activation, kernel_initializer="he_normal")
         # (batch size, 160, 208, 1)
 

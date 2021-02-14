@@ -83,3 +83,8 @@ class critic_2D_with_AD(BaseNet):
                                   activation='linear', kernel_initializer="he_normal")
         # (batch size, 10, 13, filters*16)
         averagePool = GlobalAveragePooling2D()(convD_2)
+
+    def compile(self):
+        assert self.model is not None, "Model has not been built"
+        self.model.compile(optimizer=Adam(lr=self.conf.lr, decay=self.conf.decay), loss=self.conf.D_loss,
+                           metrics=["binary_crossentropy", "accuracy"])
